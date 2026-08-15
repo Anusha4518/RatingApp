@@ -201,7 +201,7 @@ Create a file named `.env` in the `backend/` folder (or check the root `.env` co
 DB_HOST=localhost
 DB_PORT=3309
 DB_USER=root
-DB_PASSWORD=Anusha@1234
+DB_PASSWORD=Your databse password
 DB_NAME=store_rating_db
 PORT=5000
 JWT_SECRET=super_secret_jwt_token_123!
@@ -281,4 +281,4 @@ Use these seeded accounts to test different roles and capabilities after running
 
 ## ✍️ Author
 
-**SaiKumar Laxman Pujari**
+*Anusha Mahantesh Harlapur**
