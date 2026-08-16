@@ -206,108 +206,7 @@ export default function UserDashboard() {
   return (
     <div className="flex min-h-screen bg-slate-50 text-slate-800 font-sans">
       
-      <aside className="w-64 bg-white border-r border-slate-200 text-slate-800 flex flex-col justify-between shrink-0 select-none">
-        <div>
-          <div className="px-6 py-6 flex items-center space-x-3.5 border-b border-slate-100">
-            <div className="h-8 w-8 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0 shadow-sm">
-              <span className="text-base text-slate-800">⭐</span>
-            </div>
-            <span className="text-2xl font-extrabold text-slate-800 tracking-tight leading-none font-sans">RatingApp</span>
-            <span className="border border-slate-200 text-slate-500 text-[10px] px-1.5 py-0.5 rounded font-extrabold tracking-wider uppercase scale-90">
-              User
-            </span>
-          </div>
 
-          <nav className="mt-6 px-4 space-y-7">
-            <div className="space-y-1.5">
-              <button
-                onClick={() => setActiveTab('dashboard')}
-                className={`w-full flex items-center space-x-3.5 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:bg-slate-100 hover:text-slate-900 ${
-                  activeTab === 'dashboard' ? 'text-slate-900 bg-slate-100 shadow-sm' : 'text-slate-650'
-                }`}
-              >
-                <svg className="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z" />
-                </svg>
-                <span>Dashboard</span>
-              </button>
-
-              <button
-                onClick={() => setActiveTab('stores')}
-                className={`w-full flex items-center space-x-3.5 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:bg-slate-100 hover:text-slate-900 ${
-                  activeTab === 'stores' ? 'text-slate-900 bg-slate-100 shadow-sm' : 'text-slate-655'
-                }`}
-              >
-                <svg className="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-                <span>Stores</span>
-              </button>
-
-              <button
-                onClick={() => setActiveTab('ratings')}
-                className={`w-full flex items-center space-x-3.5 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:bg-slate-100 hover:text-slate-900 ${
-                  activeTab === 'ratings' ? 'text-slate-900 bg-slate-100 shadow-sm' : 'text-slate-655'
-                }`}
-              >
-                <svg className="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 01-2 2" />
-                </svg>
-                <span>Ratings</span>
-              </button>
-
-              <button
-                onClick={() => setActiveTab('my-feedback')}
-                className={`w-full flex items-center space-x-3.5 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:bg-slate-100 hover:text-slate-900 ${
-                  activeTab === 'my-feedback' ? 'text-slate-900 bg-slate-100 shadow-sm' : 'text-slate-655'
-                }`}
-              >
-                <svg className="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                </svg>
-                <span>My Feedback</span>
-              </button>
-            </div>
-
-            <div className="space-y-1.5">
-              <div className="px-4 text-[10px] text-slate-400 font-bold uppercase tracking-wider">
-                Account
-              </div>
-              <button
-                onClick={() => setActiveTab('profile')}
-                className={`w-full flex items-center space-x-3.5 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:bg-slate-100 hover:text-slate-900 ${
-                  activeTab === 'profile' ? 'text-slate-900 bg-slate-100 shadow-sm' : 'text-slate-655'
-                }`}
-              >
-                <svg className="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-                <span>Profile</span>
-              </button>
-              <button
-                onClick={() => setActiveTab('settings')}
-                className={`w-full flex items-center space-x-3.5 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:bg-slate-100 hover:text-slate-900 ${
-                  activeTab === 'settings' ? 'text-slate-900 bg-slate-100 shadow-sm' : 'text-slate-655'
-                }`}
-              >
-                <svg className="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                <span>Settings</span>
-              </button>
-            </div>
-          </nav>
-        </div>
-
-        <div className="p-4">
-          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col items-center text-center">
-            <span className="text-3xl mb-2">🛍️</span>
-            <div className="text-xs font-bold text-slate-900 mb-0.5">Rate. Discover. Support.</div>
-            <div className="text-[10px] text-slate-500 leading-normal">
-              Your feedback helps local businesses grow.
-            </div>
-          </div>
-        </div>
-      </aside>
 
       
       <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
@@ -315,7 +214,19 @@ export default function UserDashboard() {
         
         <header className="h-16 bg-white border-b border-slate-200/50 select-none shrink-0">
           <div className="max-w-4xl w-full mx-auto px-8 flex items-center justify-between h-full">
-            <div className="flex-1 max-w-sm flex items-center">
+            {/* Logo */}
+            <div className="flex items-center space-x-3 shrink-0">
+              <div className="h-8 w-8 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0 shadow-sm">
+                <span className="text-base">⭐</span>
+              </div>
+              <span className="text-xl font-extrabold text-slate-800 tracking-tight leading-none">RatingApp</span>
+              <span className="border border-slate-200 text-slate-500 text-[10px] px-1.5 py-0.5 rounded font-extrabold tracking-wider uppercase">
+                User
+              </span>
+            </div>
+
+            {/* Search */}
+            <div className="flex-1 max-w-sm mx-8 flex items-center">
               {activeTab === 'stores' && (
                 <div className="relative w-full flex items-center">
                   <input
@@ -325,7 +236,7 @@ export default function UserDashboard() {
                     placeholder="Search store name or address..."
                     className="w-full bg-[#f3f7f5] border border-transparent rounded-full px-5 py-2 text-xs outline-none transition focus:bg-white focus:border-emerald-500/20 focus:ring-4 focus:ring-emerald-500/5 text-slate-700"
                   />
-                  <button className="absolute right-1 hover:bg-slate-200/50 p-1.5 rounded-full text-slate-400 hover:text-slate-650 transition">
+                  <button className="absolute right-1 hover:bg-slate-200/50 p-1.5 rounded-full text-slate-400 transition">
                     🔍
                   </button>
                 </div>
@@ -334,22 +245,9 @@ export default function UserDashboard() {
 
             <div className="flex items-center space-x-6 text-sm text-slate-700">
               
-              <div className="flex items-center space-x-2">
-                <span>Welcome, </span>
-                <span className="font-extrabold text-slate-800">
-                  {currentUser ? currentUser.name : 'Vikramaditya Pratap Singh'}
-                </span>
-              </div>
 
-              
-              <div className="relative p-2 hover:bg-[#eaf1ed] rounded-full cursor-pointer transition">
-                <svg className="h-5 w-5 text-slate-500 hover:text-slate-750" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                </svg>
-                <span className="absolute top-1 right-1 h-3.5 w-3.5 bg-emerald-700 text-white rounded-full text-[8px] font-extrabold flex items-center justify-center">
-                  2
-                </span>
-              </div>
+
+
 
               
               <div className="flex items-center space-x-2 border-l border-slate-200 pl-4">
@@ -371,7 +269,31 @@ export default function UserDashboard() {
           </div>
         </header>
 
-        
+        {/* Horizontal Tab Navigation */}
+        <nav className="bg-white border-b border-slate-100 select-none shrink-0">
+          <div className="max-w-4xl w-full mx-auto px-8 flex items-center space-x-1 h-11">
+            {[
+              { key: 'stores',      label: 'Stores' },
+              { key: 'ratings',     label: 'My Ratings' },
+              { key: 'my-feedback', label: 'My Feedback' },
+              { key: 'profile',     label: 'Profile' },
+              { key: 'settings',    label: 'Settings' },
+            ].map(tab => (
+              <button
+                key={tab.key}
+                onClick={() => setActiveTab(tab.key)}
+                className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all ${
+                  activeTab === tab.key
+                    ? 'bg-slate-900 text-white'
+                    : 'text-slate-500 hover:text-slate-800 hover:bg-slate-100'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </nav>
+
         <main className="flex-1 p-8 space-y-8 max-w-4xl w-full mx-auto">
           
           
@@ -422,36 +344,54 @@ export default function UserDashboard() {
             <div className="space-y-6">
               <div>
                 <h1 className="text-2xl font-extrabold text-slate-800 tracking-tight">Registered Shops</h1>
-                <p className="text-xs text-slate-500 mt-0.5">Rate local shops and browse feedback</p>
+                <p className="text-sm text-slate-500 mt-0.5">Rate local shops and browse feedback</p>
               </div>
 
               {loading && stores.length === 0 ? (
-                <div className="text-center py-12 text-slate-500 font-semibold">Loading stores...</div>
+                <div className="text-center py-20 text-slate-500 font-semibold">Loading stores...</div>
               ) : stores.length === 0 ? (
-                <div className="bg-white border border-slate-200/50 rounded-2xl p-12 text-center shadow-sm">
+                <div className="bg-white border border-slate-200/50 rounded-2xl p-16 text-center shadow-sm">
                   <p className="text-slate-500 font-semibold">No stores found.</p>
                 </div>
               ) : (
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                   {stores.map((store) => (
-                    <div key={store.id} className="bg-white border border-slate-200/50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
-                      <div>
-                        <div className="flex justify-between items-start gap-3 mb-3">
-                          <h3 className="font-bold text-slate-900 text-base leading-snug">{store.name}</h3>
-                          <span className="bg-amber-50 border border-amber-200/60 text-amber-700 text-xs px-2.5 py-0.5 rounded-full font-extrabold shrink-0 flex items-center gap-0.5 shadow-sm">
+                    <div key={store.id} className="bg-white border border-slate-200/50 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 flex flex-col">
+                      {/* Card Header */}
+                      <div className="p-7 flex-1">
+                        <div className="flex justify-between items-start gap-4 mb-4">
+                          <h3 className="font-extrabold text-slate-900 text-lg leading-snug">{store.name}</h3>
+                          <span className="bg-amber-50 border border-amber-200/60 text-amber-600 text-sm px-3 py-1 rounded-full font-extrabold shrink-0 flex items-center gap-1 shadow-sm">
                             ★ {store.averageRating.toFixed(1)}
                           </span>
                         </div>
-                        <p className="text-[10px] text-slate-700 font-bold tracking-wider uppercase mb-2">{store.email}</p>
-                        <p className="text-xs text-slate-600 leading-relaxed flex items-start gap-1">
-                          <span className="text-slate-700">📍</span>
+
+                        <p className="text-xs text-slate-500 font-semibold tracking-wider uppercase mb-3">{store.email}</p>
+
+                        <div className="flex items-start gap-2 text-sm text-slate-600 leading-relaxed bg-slate-50 rounded-xl p-3 border border-slate-100">
+                          <span className="shrink-0 mt-0.5">📍</span>
                           <span>{store.address}</span>
-                        </p>
+                        </div>
+
+                        {/* Average rating bar */}
+                        <div className="mt-5">
+                          <div className="flex justify-between items-center mb-1.5">
+                            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Average Rating</span>
+                            <span className="text-xs font-bold text-slate-700">{store.averageRating.toFixed(1)} / 5</span>
+                          </div>
+                          <div className="w-full bg-slate-100 rounded-full h-1.5">
+                            <div
+                              className="bg-amber-400 h-1.5 rounded-full transition-all"
+                              style={{ width: `${(store.averageRating / 5) * 100}%` }}
+                            />
+                          </div>
+                        </div>
                       </div>
 
-                      <div className="border-t border-slate-100 mt-6 pt-4 flex justify-between items-end">
+                      {/* Card Footer — Rating */}
+                      <div className="border-t border-slate-100 px-7 py-5 flex justify-between items-center bg-slate-50/50 rounded-b-2xl">
                         <div>
-                          <span className="text-[10px] text-slate-400 block mb-1.5 font-bold uppercase tracking-wider">
+                          <span className="text-[10px] text-slate-400 block mb-2 font-bold uppercase tracking-wider">
                             {store.userRating > 0 ? 'Your Rating' : 'Click to Rate'}
                           </span>
                           <StarRating
@@ -460,7 +400,7 @@ export default function UserDashboard() {
                           />
                         </div>
                         {store.userRating > 0 && (
-                          <span className="text-xs text-slate-800 font-bold bg-slate-100 border border-slate-200 rounded-md px-2 py-1 flex items-center select-none">
+                          <span className="text-sm text-slate-800 font-bold bg-white border border-slate-200 rounded-lg px-3 py-1.5 flex items-center select-none shadow-sm">
                             Rated:&nbsp;{store.userRating} / 5
                           </span>
                         )}

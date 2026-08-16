@@ -22,6 +22,8 @@ export default function AdminDashboard() {
   const [userRoleFilter, setUserRoleFilter] = useState('');
   const [userSortBy, setUserSortBy] = useState('name');
   const [userSortOrder, setUserSortOrder] = useState('ASC');
+  const [userPage, setUserPage] = useState(1);
+  const usersPerPage = 8;
 
   
   const [storeSearch, setStoreSearch] = useState('');
@@ -136,6 +138,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     fetchUsers();
+    setUserPage(1);
   }, [token, userSearch, userRoleFilter, userSortBy, userSortOrder]);
 
   
@@ -430,7 +433,7 @@ export default function AdminDashboard() {
   return (
     <div className="flex min-h-screen bg-slate-50 text-slate-800 font-sans">
       
-      <aside className="w-64 bg-white border-r border-slate-200 text-slate-800 flex flex-col justify-between shrink-0 select-none">
+      <aside className="fixed top-0 left-0 h-screen w-64 bg-white border-r border-slate-200 text-slate-800 flex flex-col justify-between select-none z-30 overflow-y-auto">
         <div>
           <div className="px-6 py-6 flex items-center space-x-3.5 border-b border-slate-100">
             <div className="h-8 w-8 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0 shadow-sm">
@@ -547,7 +550,7 @@ export default function AdminDashboard() {
         </div>
       </aside>
 
-      <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
+      <div className="flex-1 flex flex-col min-w-0 ml-64">
         <header className="h-16 bg-white border-b border-slate-100 select-none shrink-0">
           <div className="max-w-6xl w-full mx-auto px-8 flex items-center justify-between h-full">
             <div className="flex-1 max-w-sm flex items-center">
@@ -582,23 +585,13 @@ export default function AdminDashboard() {
 
             <div className="flex items-center space-x-6 text-sm text-slate-700">
               <div className="flex items-center space-x-3">
-                <span className="font-semibold text-slate-705">
-                  {currentUser ? currentUser.name : 'Anusha Harlapur'}
-                </span>
                 <div className="relative h-9 w-9 rounded-full bg-slate-100 flex items-center justify-center font-bold text-slate-800 text-sm select-none shadow-sm">
                   {(currentUser ? currentUser.name : 'A').charAt(0)}
                   <span className="absolute -top-0.5 -right-0.5 h-3 w-3 bg-slate-400 rounded-full border-2 border-white"></span>
                 </div>
               </div>
 
-              <div className="relative p-2 hover:bg-slate-100 rounded-full cursor-pointer transition">
-                <svg className="h-5 w-5 text-slate-500 hover:text-slate-750" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                </svg>
-                <span className="absolute top-1 right-1 h-3.5 w-3.5 bg-slate-800 text-white rounded-full text-[8px] font-extrabold flex items-center justify-center">
-                  3
-                </span>
-              </div>
+
 
               <div className="flex items-center space-x-2 border-l border-slate-200 pl-4">
                 <button
@@ -626,7 +619,11 @@ export default function AdminDashboard() {
                     <div className="text-[10px] text-slate-400 uppercase font-bold tracking-wider mb-1">Total Users</div>
                     <div className="text-2xl font-extrabold text-slate-900">{stats.totalUsers}</div>
                   </div>
-                  <span className="text-3xl select-none">👥</span>
+                  <div className="h-12 w-12 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
+                    <svg className="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
                 </div>
 
                 <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex items-center justify-between">
@@ -634,7 +631,11 @@ export default function AdminDashboard() {
                     <div className="text-[10px] text-slate-400 uppercase font-bold tracking-wider mb-1">Total Stores</div>
                     <div className="text-2xl font-extrabold text-slate-900">{stats.totalStores}</div>
                   </div>
-                  <span className="text-3xl select-none">🏬</span>
+                  <div className="h-12 w-12 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0">
+                    <svg className="h-6 w-6 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.5 7h13L17 13M9 21a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z" />
+                    </svg>
+                  </div>
                 </div>
 
                 <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex items-center justify-between">
@@ -642,7 +643,11 @@ export default function AdminDashboard() {
                     <div className="text-[10px] text-slate-400 uppercase font-bold tracking-wider mb-1">Total Star Ratings</div>
                     <div className="text-2xl font-extrabold text-slate-900">{stats.totalRatings}</div>
                   </div>
-                  <span className="text-3xl select-none">⭐</span>
+                  <div className="h-12 w-12 rounded-xl bg-amber-50 flex items-center justify-center shrink-0">
+                    <svg className="h-6 w-6 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                    </svg>
+                  </div>
                 </div>
               </section>
 
@@ -651,15 +656,25 @@ export default function AdminDashboard() {
                 <div className="flex flex-wrap gap-4">
                   <button
                     onClick={() => setUserModalOpen(true)}
-                    className="flex items-center space-x-2 bg-slate-800 hover:bg-slate-900 text-white rounded-xl px-5 py-3 font-bold transition shadow-sm text-xs"
+                    className="group flex items-center space-x-3 bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-200 rounded-xl px-5 py-3.5 font-semibold transition-all shadow-sm text-sm text-slate-700 hover:text-blue-700"
                   >
-                    <span>+ Add User</span>
+                    <div className="h-8 w-8 rounded-lg bg-blue-50 group-hover:bg-blue-100 flex items-center justify-center transition-colors shrink-0">
+                      <svg className="h-4 w-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                      </svg>
+                    </div>
+                    <span>Add User</span>
                   </button>
                   <button
                     onClick={() => setStoreModalOpen(true)}
-                    className="flex items-center space-x-2 bg-slate-800 hover:bg-slate-900 text-white rounded-xl px-5 py-3 font-bold transition shadow-sm text-xs"
+                    className="group flex items-center space-x-3 bg-white hover:bg-emerald-50 border border-slate-200 hover:border-emerald-200 rounded-xl px-5 py-3.5 font-semibold transition-all shadow-sm text-sm text-slate-700 hover:text-emerald-700"
                   >
-                    <span>+ Add Store</span>
+                    <div className="h-8 w-8 rounded-lg bg-emerald-50 group-hover:bg-emerald-100 flex items-center justify-center transition-colors shrink-0">
+                      <svg className="h-4 w-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                      </svg>
+                    </div>
+                    <span>Add Store</span>
                   </button>
                 </div>
               </div>
@@ -675,7 +690,7 @@ export default function AdminDashboard() {
                   <select
                     value={userRoleFilter}
                     onChange={(e) => setUserRoleFilter(e.target.value)}
-                    className="border border-slate-200 rounded-lg px-2.5 py-2 outline-none bg-white text-slate-650 font-bold"
+                    className="border border-slate-200 rounded-lg px-2.5 py-2 outline-none bg-white text-slate-600 font-semibold"
                   >
                     <option value="">All Roles</option>
                     <option value="SYSTEM_ADMIN">Admin</option>
@@ -684,15 +699,20 @@ export default function AdminDashboard() {
                   </select>
                   <button
                     onClick={() => setUserModalOpen(true)}
-                    className="flex items-center bg-slate-800 hover:bg-slate-900 text-white rounded-lg px-4.5 py-2 font-bold transition shadow-sm"
+                    className="group flex items-center space-x-2 bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-200 rounded-lg px-4 py-2 font-semibold transition-all shadow-sm text-sm text-slate-700 hover:text-blue-700"
                   >
-                    <span>+ Add User</span>
+                    <div className="h-6 w-6 rounded-md bg-blue-50 group-hover:bg-blue-100 flex items-center justify-center transition-colors shrink-0">
+                      <svg className="h-3.5 w-3.5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                      </svg>
+                    </div>
+                    <span>Add User</span>
                   </button>
                 </div>
               </div>
 
               <div className="overflow-x-auto">
-                <table className="w-full text-left text-sm text-slate-655">
+                <table className="w-full text-left text-sm text-slate-600">
                   <thead className="bg-[#f7faf8] border-b border-slate-100 text-slate-400 text-[10px] font-bold uppercase tracking-wider">
                     <tr>
                       <th className="px-6 py-3.5 cursor-pointer hover:text-slate-700 transition" onClick={() => toggleUserSort('name')}>
@@ -708,16 +728,15 @@ export default function AdminDashboard() {
                         Role {userSortBy === 'role' && (userSortOrder === 'ASC' ? '↑' : '↓')}
                       </th>
                       <th className="px-6 py-3.5 text-right font-bold">Linked Store Details</th>
-                      <th className="px-6 py-3.5 text-center w-16">Action</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
                     {users.length === 0 ? (
                       <tr>
-                        <td colSpan="6" className="px-6 py-10 text-center text-slate-450 font-medium">No users found.</td>
+                        <td colSpan="5" className="px-6 py-10 text-center text-slate-400 font-medium">No users found.</td>
                       </tr>
                     ) : (
-                      users.map(u => (
+                      users.slice((userPage - 1) * usersPerPage, userPage * usersPerPage).map(u => (
                         <tr key={u.id} className="hover:bg-slate-50/50 transition-colors">
                           <td className="px-6 py-4 font-bold text-slate-900">
                             <div className="flex items-center space-x-3">
@@ -732,28 +751,66 @@ export default function AdminDashboard() {
                           <td className="px-6 py-4 font-medium select-none">
                             <span className={`inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase ${
                               u.role === 'SYSTEM_ADMIN' ? 'bg-red-50 text-red-700 border border-red-100/60' :
-                              u.role === 'STORE_OWNER' ? 'bg-slate-50 text-slate-700 border border-slate-200/60' :
-                              'bg-slate-100 text-slate-655 border border-slate-200'
+                              u.role === 'STORE_OWNER' ? 'bg-slate-900 text-white border border-slate-800' :
+                              'bg-slate-100 text-slate-600 border border-slate-200'
                             }`}>
                               {u.role === 'SYSTEM_ADMIN' ? 'Admin' : u.role === 'STORE_OWNER' ? 'Owner' : 'User'}
                             </span>
                           </td>
-                          <td className="px-6 py-4 text-right text-xs text-slate-505 font-medium">
+                          <td className="px-6 py-4 text-xs text-slate-500 font-medium">
                             {u.role === 'STORE_OWNER' && u.store ? (
-                              <span className="bg-slate-50 border border-slate-100 px-2.5 py-1 rounded-md text-slate-700">
-                                {u.store.name} <span className="text-amber-500 font-bold ml-1">★ {u.store.rating.toFixed(1)}</span>
-                              </span>
-                            ) : '—'}
+                              <div className="flex flex-col items-end gap-1">
+                                <span className="bg-slate-50 border border-slate-100 px-2.5 py-1 rounded-md text-slate-700 font-semibold text-xs whitespace-nowrap">
+                                  {u.store.name}
+                                </span>
+                                <span className="text-amber-500 font-bold text-xs">★ {u.store.rating.toFixed(1)}</span>
+                              </div>
+                            ) : <span className="block text-right">—</span>}
                           </td>
-                          <td className="px-6 py-4 text-center">
-                            <button className="text-slate-400 hover:text-slate-700 p-1 font-bold text-lg select-none">⋮</button>
-                          </td>
+
                         </tr>
                       ))
                     )}
                   </tbody>
-                </table>
-              </div>
+                  </table>
+                </div>
+              {/* Pagination */}
+              {users.length > usersPerPage && (
+                <div className="px-6 py-4 border-t border-slate-100 flex items-center justify-between bg-white">
+                  <span className="text-xs text-slate-400 font-medium">
+                    Showing {(userPage - 1) * usersPerPage + 1}–{Math.min(userPage * usersPerPage, users.length)} of {users.length} users
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <button
+                      onClick={() => setUserPage(p => Math.max(1, p - 1))}
+                      disabled={userPage === 1}
+                      className="px-3 py-1.5 rounded-lg text-xs font-semibold border border-slate-200 text-slate-600 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition"
+                    >
+                      ← Prev
+                    </button>
+                    {Array.from({ length: Math.ceil(users.length / usersPerPage) }, (_, i) => i + 1).map(page => (
+                      <button
+                        key={page}
+                        onClick={() => setUserPage(page)}
+                        className={`w-8 h-8 rounded-lg text-xs font-bold transition ${
+                          page === userPage
+                            ? 'bg-slate-900 text-white shadow-sm'
+                            : 'border border-slate-200 text-slate-600 hover:bg-slate-50'
+                        }`}
+                      >
+                        {page}
+                      </button>
+                    ))}
+                    <button
+                      onClick={() => setUserPage(p => Math.min(Math.ceil(users.length / usersPerPage), p + 1))}
+                      disabled={userPage === Math.ceil(users.length / usersPerPage)}
+                      className="px-3 py-1.5 rounded-lg text-xs font-semibold border border-slate-200 text-slate-600 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition"
+                    >
+                      Next →
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
@@ -764,14 +821,19 @@ export default function AdminDashboard() {
                 <h3 className="text-sm font-extrabold text-slate-800">Registered Store Outlets</h3>
                 <button
                   onClick={() => setStoreModalOpen(true)}
-                  className="flex items-center bg-slate-800 hover:bg-slate-900 text-white rounded-lg px-4.5 py-2 font-bold transition shadow-sm"
+                  className="group flex items-center space-x-2 bg-white hover:bg-emerald-50 border border-slate-200 hover:border-emerald-200 rounded-lg px-4 py-2 font-semibold transition-all shadow-sm text-sm text-slate-700 hover:text-emerald-700"
                 >
-                  <span>+ Add Store</span>
+                  <div className="h-6 w-6 rounded-md bg-emerald-50 group-hover:bg-emerald-100 flex items-center justify-center transition-colors shrink-0">
+                    <svg className="h-3.5 w-3.5 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                  </div>
+                  <span>Add Store</span>
                 </button>
               </div>
 
               <div className="overflow-x-auto">
-                <table className="w-full text-left text-sm text-slate-655">
+                <table className="w-full text-left text-sm text-slate-600">
                   <thead className="bg-[#f7faf8] border-b border-slate-100 text-slate-400 text-[10px] font-bold uppercase tracking-wider">
                     <tr>
                       <th className="px-6 py-3.5 cursor-pointer hover:text-slate-700 transition" onClick={() => toggleStoreSort('name')}>
@@ -787,13 +849,12 @@ export default function AdminDashboard() {
                         Rating {storeSortBy === 'rating' && (storeSortOrder === 'ASC' ? '↑' : '↓')}
                       </th>
                       <th className="px-6 py-3.5 font-bold">Owner Assigned</th>
-                      <th className="px-6 py-3.5 text-center w-16">Action</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
                     {stores.length === 0 ? (
                       <tr>
-                        <td colSpan="6" className="px-6 py-10 text-center text-slate-450 font-medium">No stores found.</td>
+                        <td colSpan="5" className="px-6 py-10 text-center text-slate-400 font-medium">No stores found.</td>
                       </tr>
                     ) : (
                       stores.map(s => (
@@ -811,10 +872,8 @@ export default function AdminDashboard() {
                           <td className="px-6 py-4">{s.email}</td>
                           <td className="px-6 py-4 max-w-xs truncate">{s.address}</td>
                           <td className="px-6 py-4 font-bold text-amber-500">★ {s.averageRating.toFixed(1)}</td>
-                          <td className="px-6 py-4 font-semibold text-slate-850">{s.ownerName || 'Unassigned'}</td>
-                          <td className="px-6 py-4 text-center">
-                            <button className="text-slate-400 hover:text-slate-700 p-1 font-bold text-lg select-none">⋮</button>
-                          </td>
+                          <td className="px-6 py-4 font-semibold text-slate-800">{s.ownerName || 'Unassigned'}</td>
+
                         </tr>
                       ))
                     )}
@@ -880,17 +939,14 @@ export default function AdminDashboard() {
               </div>
 
               <div className="space-y-4 text-sm">
-                <div>
-                  <span className="text-[10px] text-slate-400 font-bold uppercase block tracking-wider">Full Name</span>
-                  <span className="text-base font-bold text-slate-900">{currentUser ? currentUser.name : 'Anusha Mahantesh Harlapur'}</span>
-                </div>
+
                 <div>
                   <span className="text-[10px] text-slate-400 font-bold uppercase block tracking-wider">Email Address</span>
-                  <span className="text-sm font-semibold text-slate-750">{currentUser ? currentUser.email : 'admin@ratestore.com'}</span>
+                  <span className="text-sm font-semibold text-slate-700">{currentUser ? currentUser.email : 'admin@ratestore.com'}</span>
                 </div>
                 <div>
                   <span className="text-[10px] text-slate-400 font-bold uppercase block tracking-wider">Physical Address</span>
-                  <span className="text-sm text-slate-650 leading-relaxed">{currentUser ? currentUser.address : 'Not Configured'}</span>
+                  <span className="text-sm text-slate-600 leading-relaxed">{currentUser ? currentUser.address : 'Not Configured'}</span>
                 </div>
                 <div>
                   <span className="text-[10px] text-slate-400 font-bold uppercase block tracking-wider font-semibold">Account Role Privilege</span>
