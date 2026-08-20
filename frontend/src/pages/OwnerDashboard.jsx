@@ -157,64 +157,147 @@ export default function OwnerDashboard() {
 
   return (
     <div className="flex min-h-screen bg-slate-50 text-slate-800 font-sans">
-      
+      {/* Sidebar */}
+      <aside className="fixed top-0 left-0 h-screen w-64 bg-white border-r border-slate-200 text-slate-800 flex flex-col justify-between select-none z-30 overflow-y-auto">
+        <div>
+          <div className="px-6 py-6 flex items-center space-x-3 border-b border-slate-100">
+            <div className="h-8 w-8 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0 shadow-sm">
+              <span className="text-base">⭐</span>
+            </div>
+            <span className="text-xl font-extrabold text-slate-800 tracking-tight leading-none">RatingApp</span>
+            <span className="border border-slate-200 text-slate-500 text-[9px] px-1.5 py-0.5 rounded font-extrabold tracking-wider uppercase">
+              Owner
+            </span>
+          </div>
 
-
-      <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
-        <header className="h-16 bg-white border-b border-slate-100 select-none shrink-0">
-          <div className="max-w-7xl w-full mx-auto px-10 flex items-center justify-between h-full">
-            {/* Logo */}
-            <div className="flex items-center space-x-3 shrink-0">
-              <div className="h-8 w-8 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0 shadow-sm">
-                <span className="text-base">⭐</span>
+          <nav className="mt-6 px-4 space-y-6">
+            <div className="space-y-1.5">
+              <div className="px-4 text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-2">
+                Main Menu
               </div>
-              <span className="text-xl font-extrabold text-slate-800 tracking-tight leading-none">RatingApp</span>
-              <span className="border border-slate-200 text-slate-500 text-[10px] px-1.5 py-0.5 rounded font-extrabold tracking-wider uppercase">
-                Owner
-              </span>
+
+              <button
+                onClick={() => setActiveTab('dashboard')}
+                className={`w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:bg-slate-100 hover:text-slate-900 ${
+                  activeTab === 'dashboard' ? 'text-slate-900 bg-slate-100 shadow-sm' : 'text-slate-650'
+                }`}
+              >
+                <div className="flex items-center space-x-3.5">
+                  <svg className="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z" />
+                  </svg>
+                  <span>Dashboard</span>
+                </div>
+                {activeTab === 'dashboard' && <span className="text-xs">➔</span>}
+              </button>
+
+              <button
+                onClick={() => setActiveTab('ratings')}
+                className={`w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:bg-slate-100 hover:text-slate-900 ${
+                  activeTab === 'ratings' ? 'text-slate-900 bg-slate-100 shadow-sm' : 'text-slate-650'
+                }`}
+              >
+                <div className="flex items-center space-x-3.5">
+                  <svg className="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.907c.961 0 1.36 1.242.588 1.81l-3.97 2.883a1 1 0 00-.364 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.971-2.883a1 1 0 00-1.178 0l-3.97 2.883c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.364-1.118L2.98 12.08c-.772-.568-.372-1.81.588-1.81h4.906a1 1 0 00.951-.69l1.519-4.674z" />
+                  </svg>
+                  <span>Ratings Table</span>
+                </div>
+                {activeTab === 'ratings' && <span className="text-xs">➔</span>}
+              </button>
+
+              <button
+                onClick={() => setActiveTab('store-info')}
+                className={`w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:bg-slate-100 hover:text-slate-900 ${
+                  activeTab === 'store-info' ? 'text-slate-900 bg-slate-100 shadow-sm' : 'text-slate-655'
+                }`}
+              >
+                <div className="flex items-center space-x-3.5">
+                  <svg className="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  </svg>
+                  <span>My Store Info</span>
+                </div>
+                {activeTab === 'store-info' && <span className="text-xs">➔</span>}
+              </button>
             </div>
 
-            <div className="flex items-center space-x-3">
+            <div className="space-y-1.5">
+              <div className="px-4 text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-2">
+                User
+              </div>
+
               <button
-                onClick={() => setChangePasswordOpen(true)}
-                className="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 rounded-lg text-xs transition font-bold"
+                onClick={() => setActiveTab('profile')}
+                className={`w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:bg-slate-100 hover:text-slate-900 ${
+                  activeTab === 'profile' ? 'text-slate-900 bg-slate-100 shadow-sm' : 'text-slate-655'
+                }`}
               >
-                Change Password
+                <div className="flex items-center space-x-3.5">
+                  <svg className="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                  <span>My Profile</span>
+                </div>
+                {activeTab === 'profile' && <span className="text-xs">➔</span>}
               </button>
+
               <button
-                onClick={handleLogout}
-                className="px-3.5 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs transition font-bold"
+                onClick={() => setActiveTab('settings')}
+                className={`w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:bg-slate-100 hover:text-slate-900 ${
+                  activeTab === 'settings' ? 'text-slate-900 bg-slate-100 shadow-sm' : 'text-slate-655'
+                }`}
               >
-                Logout
+                <div className="flex items-center space-x-3.5">
+                  <svg className="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span>Settings</span>
+                </div>
+                {activeTab === 'settings' && <span className="text-xs">➔</span>}
               </button>
+            </div>
+          </nav>
+        </div>
+
+        <div className="p-5 select-none border-t border-slate-100 text-[10px] text-slate-400 text-center font-medium">
+          © 2026 RatingApp
+        </div>
+      </aside>
+
+      {/* Main Content Pane */}
+      <div className="flex-1 flex flex-col min-w-0 ml-64">
+        <header className="h-16 bg-white border-b border-slate-100 select-none shrink-0">
+          <div className="max-w-7xl w-full mx-auto px-10 flex items-center justify-between h-full">
+            <div className="flex-1 text-sm font-semibold text-slate-700">
+              Welcome back, <span className="font-bold text-slate-900">{currentUser ? currentUser.name : 'Store Owner'}</span>!
+            </div>
+
+            <div className="flex items-center space-x-6 text-sm text-slate-700">
+              <div className="flex items-center space-x-3">
+                <div className="relative h-9 w-9 rounded-full bg-slate-100 border border-slate-205 flex items-center justify-center font-bold text-slate-800 text-sm select-none shadow-sm">
+                  {(currentUser ? currentUser.name : 'O').charAt(0)}
+                  <span className="absolute -top-0.5 -right-0.5 h-3 w-3 bg-emerald-400 rounded-full border-2 border-white"></span>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-3 border-l border-slate-200 pl-6">
+                <button
+                  onClick={() => setChangePasswordOpen(true)}
+                  className="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 rounded-lg text-xs transition font-bold"
+                >
+                  Change Password
+                </button>
+                <button
+                  onClick={handleLogout}
+                  className="px-3.5 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs transition font-bold"
+                >
+                  Logout
+                </button>
+              </div>
             </div>
           </div>
         </header>
-
-        {/* Horizontal Tab Navigation */}
-        <nav className="bg-white border-b border-slate-100 select-none shrink-0">
-          <div className="max-w-7xl w-full mx-auto px-10 flex items-center space-x-1 h-11">
-            {[
-              { key: 'dashboard', label: 'Dashboard' },
-              { key: 'ratings',   label: 'Ratings Table' },
-              { key: 'store-info',label: 'My Store Info' },
-              { key: 'profile',   label: 'My Profile' },
-              { key: 'settings',  label: 'Settings' },
-            ].map(tab => (
-              <button
-                key={tab.key}
-                onClick={() => setActiveTab(tab.key)}
-                className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all ${
-                  activeTab === tab.key
-                    ? 'bg-slate-900 text-white'
-                    : 'text-slate-500 hover:text-slate-800 hover:bg-slate-100'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-        </nav>
 
         <main className="flex-1 p-10 space-y-8 max-w-7xl w-full mx-auto">
           
@@ -235,32 +318,34 @@ export default function OwnerDashboard() {
                   <div className="flex justify-between items-center flex-wrap gap-4 select-none">
                     <div>
                       <h1 className="text-2xl font-extrabold text-black tracking-tight">{data.storeName}</h1>
-                      <p className="text-sm text-slate-500 mt-1">Assigned outlet metrics and score statistics</p>
-                    </div>
-
-                    
-                    <div className="bg-white border border-slate-200/50 rounded-xl p-5 flex items-center space-x-4 shadow-sm select-none">
-                      <span className="text-3xl text-amber-500">★</span>
-                      <div>
-                        <div className="text-xs text-slate-400 uppercase font-bold tracking-wider">Average Rating</div>
-                        <div className="text-2xl font-extrabold text-black mt-0.5">
-                          {data.averageRating.toFixed(1)} <span className="text-sm text-slate-500 font-medium">/ 5</span>
-                        </div>
-                        <div className="text-xs text-slate-500">Based on {data.ratings.length} reviews</div>
-                      </div>
+                      <p className="text-sm text-slate-550 mt-1">Assigned outlet metrics and score statistics</p>
                     </div>
                   </div>
 
-                  
-                  <div className="grid grid-cols-2 gap-6">
-                    <div className="bg-white border border-slate-200/50 rounded-xl p-6 shadow-sm">
-                      <div className="text-xs text-slate-400 uppercase font-bold tracking-wider mb-1">Total Feedbacks</div>
-                      <div className="text-2xl font-extrabold text-black">{data.ratings.length} <span className="text-sm font-medium text-slate-500">reviews</span></div>
+                  {/* Metrics 2-Column Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl">
+                    {/* Average Rating Card */}
+                    <div className="bg-white border border-slate-200/50 rounded-xl p-5 flex items-center space-x-4 shadow-sm select-none">
+                      <span className="text-3xl text-amber-500">★</span>
+                      <div>
+                        <div className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Average Rating</div>
+                        <div className="text-2xl font-extrabold text-black mt-0.5">
+                          {data.averageRating.toFixed(1)} <span className="text-sm text-slate-500 font-medium">/ 5</span>
+                        </div>
+                        <div className="text-[10px] text-slate-500 mt-0.5">Based on {data.ratings.length} reviews</div>
+                      </div>
                     </div>
 
-                    <div className="bg-white border border-slate-200/50 rounded-xl p-6 shadow-sm">
-                      <div className="text-xs text-slate-400 uppercase font-bold tracking-wider mb-1">Active Status</div>
-                      <div className="text-2xl font-extrabold text-black">Online</div>
+                    {/* Total Feedbacks Card */}
+                    <div className="bg-white border border-slate-200/50 rounded-xl p-5 flex items-center space-x-4 shadow-sm select-none">
+                      <span className="text-3xl text-blue-500">💬</span>
+                      <div>
+                        <div className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Total Feedbacks</div>
+                        <div className="text-2xl font-extrabold text-black mt-0.5">
+                          {data.ratings.length} <span className="text-sm font-medium text-slate-500">reviews</span>
+                        </div>
+                        <div className="text-[10px] text-slate-500 mt-0.5">All-time reviews logged</div>
+                      </div>
                     </div>
                   </div>
 
